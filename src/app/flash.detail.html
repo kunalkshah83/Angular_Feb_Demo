@@ -1,0 +1,58 @@
+<div style="float:left;width: 20%" class="panel panel-primary">
+        <div class="panel-heading">Quick Search</div>
+        <div class="panel-body">   
+        <table class="table table-bordered">
+                <tr>
+                   <td>Alert Type</td>
+                   <td><div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Select Alert Type
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                          <li><a href="#">MWD</a></li>
+                          <li><a href="#">ERIS</a></li>
+                          <li><a href="#">DFP</a></li>
+                        </ul>
+                      </div></td>   
+                </tr>
+                <tr>
+                        <td>Date From</td>
+                        <td><input type="text" class="form-control input-sm" id="dtFrm"/></td>   
+                     </tr>
+                     <tr>
+                            <td >Date To</td>
+                            <td><input type="text" class="form-control input-sm" id="dtTo"/></td>   
+                         </tr>
+                <tr>
+                    <td colspan="2"><button type="button" class="btn btn-primary">Submit</button>
+                        &nbsp;<button type="button" class="btn btn-primary">Reset</button></td>
+                </tr>         
+                </table>
+               </div> 
+</div>
+<div style="margin-left: 10px;width: 70%;float: left;vertical-align: top" class="panel panel-primary">
+        <div class="panel-heading">{{managerSummaryTitle}}</div>
+<div class="panel-body">
+<div class="row"><div class="col-md-4">{{filterBy}}: &nbsp;<input  type="text" [(ngModel)]='searchData'/></div><br/></div>
+<div class="row"><div class="col-md-4">Search Data : {{searchData}}</div><br/></div>
+<div class="table-responsive">   
+<table class="table table-bordered">
+    <tr>
+       <th><input type="checkbox" (click)="selectCheckBox($Event)"></th>
+       <th>Alert Id</th>
+       <th>Transactions Date</th>
+       <th>Transaction Amount</th>
+       <th>Wallet Provider</th>
+       <th>Chip ID</th>
+    </tr>
+    <tr *ngFor="let alert of alertObj | alertSearch:searchData">
+            <td><input type="checkbox" id="alertCheck" ></td>   
+            <td>{{alert.alertID}}</td>
+            <td>{{alert.date}}</td>
+            <td>{{alert.amount | currency }}</td>
+            <td>{{alert.walletProvider | myUpper}}</td>
+            <td>{{alert.chipId | lowercase}}</td>
+        </tr>
+</table>
+</div>
+</div>
+</div>
